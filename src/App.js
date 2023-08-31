@@ -1,6 +1,8 @@
+import React from "react";
 import Todo from "./components/Todo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
+import { useState } from "react";
 
 function addTask(name){
   alert(name);
