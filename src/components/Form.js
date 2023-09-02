@@ -3,7 +3,7 @@ import React,{useState} from "react";
 function Form(props){
   const[name,setName] = useState("");
 
-  function typing(e){
+  function handleChange(e){
     setName(e.target.value)
   }
   function handleSubmit(e){
@@ -26,7 +26,7 @@ function Form(props){
           name="text"
           autoComplete="off"
           value={name}
-          onChange={typing}
+          onChange={handleChange}
         />
         <button type="submit" className="btn btn__primary btn__lg">
           Add
