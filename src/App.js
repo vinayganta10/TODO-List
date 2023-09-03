@@ -10,6 +10,15 @@ function App(props) {
     const newTask={id:`todo-${nanoid()}`,name,completed:false};
     setTasks((prevtasks)=>[...tasks,newTask]);
   }
+  function toggleTaskCompleted(id) {
+    const updatedTasks = tasks.map((task) => {
+      if (id === task.id) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
   let[tasks,setTasks]=useState(props.tasks);
   const taskList = tasks.map((task) => (
   <Todo
@@ -17,9 +26,12 @@ function App(props) {
     name={task.name}
     completed={task.completed}
     key={task.id}
+    toggleTaskCompleted={toggleTaskCompleted}
   />
 ));
   const buttonList = props.button.map((button)=><FilterButton key={button.id} name={button.name} pressed={button.pressed}/>);
+  let taskNoun = taskList.length===1?"task":"tasks";
+  let listHeading = `${taskList.length} ${taskNoun} remaining`;
   console.log(tasks);
   return (
     <div className="todoapp stack-large">
@@ -28,9 +40,8 @@ function App(props) {
       <div className="filters btn-group stack-exception">
         {buttonList}
       </div>
-      <h2 id="list-heading">3 tasks remaining</h2>
+      <h2 id="list-heading">{listHeading}</h2>
       <ul
-        role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
         {taskList}
