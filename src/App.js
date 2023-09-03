@@ -19,6 +19,10 @@ function App(props) {
     });
     setTasks(updatedTasks);
   }
+  function deleteTask(id){
+    let updatedTasks = tasks.filter((task)=>(id!==task.id));
+    setTasks(updatedTasks);
+  }
   let[tasks,setTasks]=useState(props.tasks);
   const taskList = tasks.map((task) => (
   <Todo
@@ -27,6 +31,7 @@ function App(props) {
     completed={task.completed}
     key={task.id}
     toggleTaskCompleted={toggleTaskCompleted}
+    deleteTask={deleteTask}
   />
 ));
   const buttonList = props.button.map((button)=><FilterButton key={button.id} name={button.name} pressed={button.pressed}/>);
