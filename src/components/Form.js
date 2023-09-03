@@ -7,9 +7,11 @@ function Form(props){
     setName(e.target.value)
   }
   function handleSubmit(e){
-    e.preventDefault();
-    props.addTask(name);
-    setName("")
+    if(name){
+      e.preventDefault();
+      props.addTask(name);
+      setName("")
+    }
   }
 
     return(
@@ -27,6 +29,7 @@ function Form(props){
           autoComplete="off"
           value={name}
           onChange={handleChange}
+          autofocus
         />
         <button type="submit" className="btn btn__primary btn__lg">
           Add
