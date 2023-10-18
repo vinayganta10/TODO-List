@@ -10,7 +10,7 @@ function Form(props){
     if(name){
       e.preventDefault();
       props.addTask(name);
-      setName("")
+      setName("");
     }
   }
 
